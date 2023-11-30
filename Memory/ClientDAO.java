@@ -83,8 +83,6 @@ public class ClientDAO {
         return null;
     }
 
-
-
     public String addPet(Pet pet) throws SQLException {
         String sql = "INSERT INTO Pets (PetID, PetName, ClientID, Description, PetPicture, Ranking) VALUES (?, ?, ?, ?, ?, ?)";
 

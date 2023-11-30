@@ -1,9 +1,6 @@
 package picadoRLuisCarlos.BL.logic;
-
 import picadoRLuisCarlos.BL.entities.Pet;
 import picadoRLuisCarlos.Memory.ClientDAO;
-import picadoRLuisCarlos.Memory.UserDAO;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;

@@ -301,7 +301,7 @@ public class Controller {
     public static void showPets() {
         SwingUtilities.invokeLater(() -> {
             JFrame guiFrame = new JFrame("Lista de Mascotas");
-            guiFrame.setSize(600, 500);
+            guiFrame.setSize(1200, 500);
             guiFrame.setLocationRelativeTo(null);
 
             List<Pet> pets = petGestor.getPets();
@@ -312,22 +312,22 @@ public class Controller {
                     JOptionPane.showMessageDialog(null, "No hay mascotas registradas.", "Lista de Mascotas", JOptionPane.INFORMATION_MESSAGE);
                 });
             } else {
-                JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+                String[] columnNames = {"Nombre de la mascota", "Nombre del dueño", "ID de la mascota", "Número de teléfono", "Descripción de la mascota", "Foto de la mascota", "Ranking de la mascota"};
+                Object[][] data = new Object[pets.size()][columnNames.length];
 
-                for (Pet pet : pets) {
-                    JPanel petPanel = new JPanel(new GridLayout(7, 2, 5, 5));
-                    addAttributeToPanel(petPanel, "Nombre de la mascota:", pet.getPetName());
-                    addAttributeToPanel(petPanel, "Nombre del dueño:", pet.getClient().getName() + " " + pet.getClient().getLastName());
-                    addAttributeToPanel(petPanel, "ID de la mascota:", Integer.toString(pet.getID()));
-                    addAttributeToPanel(petPanel, "Número de teléfono:", pet.getClient().getPhoneNumber());
-                    addAttributeToPanel(petPanel, "Descripción de la mascota:", pet.getDescription());
-                    addAttributeToPanel(petPanel, "Foto de la mascota:", pet.getPetPicture());
-                    addAttributeToPanel(petPanel, "Ranking de la mascota:", Integer.toString(pet.getRanking()));
-
-                    mainPanel.add(petPanel);
+                for (int i = 0; i < pets.size(); i++) {
+                    Pet pet = pets.get(i);
+                    data[i][0] = pet.getPetName();
+                    data[i][1] = pet.getClient().getName() + " " + pet.getClient().getLastName();
+                    data[i][2] = pet.getID();
+                    data[i][3] = pet.getClient().getPhoneNumber();
+                    data[i][4] = pet.getDescription();
+                    data[i][5] = pet.getPetPicture();
+                    data[i][6] = pet.getRanking();
                 }
 
-                JScrollPane scrollPane = new JScrollPane(mainPanel);
+                JTable table = new JTable(data, columnNames);
+                JScrollPane scrollPane = new JScrollPane(table);
                 guiFrame.add(scrollPane);
             }
             guiFrame.setVisible(true);
