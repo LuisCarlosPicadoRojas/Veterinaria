@@ -333,16 +333,6 @@ public class Controller {
             guiFrame.setVisible(true);
         });
     }
-    private static void addAttributeToPanel(JPanel panel, String label, String value) {
-        JLabel labelComponent = new JLabel(label);
-        JTextArea valueComponent = new JTextArea(value);
-        valueComponent.setEditable(false);
-        valueComponent.setLineWrap(true);
-        valueComponent.setWrapStyleWord(true);
-
-        panel.add(labelComponent);
-        panel.add(valueComponent);
-    }
     public static void showReservations(UI interfaz) {
         List<Reservation> reservations = reservationGestor.showReservations();
         int count = 0;
